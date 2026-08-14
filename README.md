@@ -155,14 +155,14 @@ The framework also exposes a console with `kagura`, `ksay`, `kmsg` and `klog` co
 
 ## A note on how this was built, and what to expect
 
-I built Kagura with AI assistance, directing the work and testing every step in the actual game. I'm blind myself, so
-everything here was checked by ear as it was written. Everything described in this README does work — speech, the menu
-announcements, the hotkeys, the release build.
+I built Kagura with AI assistance — specifically Anthropic's **Claude Opus 5**, run through **Claude Code** — directing
+the work and testing every step in the actual game. I'm blind myself, so everything here was checked by ear as it was
+written. Everything described in this README does work — speech, the menu announcements, the hotkeys, the release build.
 
-That is not the same as being thoroughly tested. I'm one person, using one screen reader (NVDA), on one copy of the game
-at version 1.09. The other eleven Prism backends compile but I have never run them. There are large parts of the game I
-haven't reached yet, and any menu I haven't walked through will read out its raw description text rather than a proper
-label. **Expect rough edges.**
+That is not the same as being thoroughly tested. I'm one person, using one screen reader (NVDA), on one copy of the
+game. The other eleven Prism backends compile but I have never run them. There are large parts of the game I haven't
+reached yet, and any menu I haven't walked through will read out its raw description text rather than a proper label.
+**Expect rough edges.**
 
 If something reads badly, reads twice, or stays silent when it shouldn't, that's a bug worth telling me about rather
 than something you have to live with. Most of it comes down to editing `names.txt`, which needs no rebuild.
@@ -176,9 +176,10 @@ whole answer
 
 ## Compatibility
 
-Built against **NS4 version 1.09**. Kagura verifies the game's instruction bytes before patching anything and refuses to
-install its hooks if they do not match, so a future game update will disable the text hook rather than crash. If that
-happens, `kagura.log` says so explicitly.
+Kagura reads game text by patching two functions inside the game, so it is tied to the build of the game it was written
+against. It verifies the exact instruction bytes before touching anything and refuses to install its hooks if they don't
+match. A game update therefore makes Kagura go quiet rather than crash, and `kagura.log` says so explicitly when it
+happens.
 
 ---
 
