@@ -332,9 +332,16 @@ namespace
                 id << prefix << "_" << setw(widths[w]) << setfill('0') << n;
 
                 string text = GameText::Resolve(id.str());
-                if (text.empty()) continue;
+                string alt  = GameText::ResolveAlt(id.str());
 
-                Log::Write("  [dump] " + id.str() + " = " + text);
+                if (text.empty() && alt.empty()) continue;
+
+                // The two resolvers disagree on purpose. On the command list one
+                // returns the input ("<icon stick_l />") and the other the label
+                // ("Move"), so both are logged when they differ.
+                if (!text.empty()) Log::Write("  [dump] " + id.str() + " = " + text);
+                if (!alt.empty() && alt != text) Log::Write("  [alt]  " + id.str() + " = " + alt);
+
                 found++;
                 break;   // one width matched; do not report the same entry twice
             }

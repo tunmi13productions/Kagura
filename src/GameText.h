@@ -20,7 +20,14 @@ public:
     // Returns the resolved string, or an empty string if resolution failed.
     static std::string Resolve(const std::string& messageId);
 
+    // The second resolver returns DIFFERENT text for the same ID. On the command
+    // list, Resolve gives the input ("<icon stick_l />") while this gives the label
+    // ("Move"); both halves are needed to read a control aloud.
+    static std::string ResolveAlt(const std::string& messageId);
+
 private:
+    static std::string ResolveAt(__int64 offset, const std::string& messageId);
+
     static __int64 _moduleBase;
 };
 

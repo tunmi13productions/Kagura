@@ -30,8 +30,23 @@
 @icon:btn_chakra   = Chakra
 @icon:btn_guard    = Guard
 @icon:btn_kawarimi = Substitution
+@icon:btn_supportl = Left Support
+@icon:btn_supportr = Right Support
 @icon:btn_1        = Button 1
 @icon:btn_2        = Button 2
+
+# Left stick, plain and with a direction. These run all through the command and
+# combo lists; without them a combo string loses its direction changes.
+@icon:stick_l      = Left Stick
+@icon:stick_lu     = Left Stick Up
+@icon:stick_ld     = Left Stick Down
+@icon:stick_ll     = Left Stick Left
+@icon:stick_lr     = Left Stick Right
+@icon:stick_r      = Right Stick
+@icon:stick_ru     = Right Stick Up
+@icon:stick_rd     = Right Stick Down
+@icon:stick_rl     = Right Stick Left
+@icon:stick_rr     = Right Stick Right
 @icon:key_dwn      = Down
 @icon:key_up       = Up
 @icon:key_lft      = Left
@@ -51,20 +66,13 @@ commandlist_demo_* = -
 # the player is doing to *other* people.
 presence_* = -
 
-# The button legend along the bottom of the screen. Re-resolved on every screen
-# change, so these fire constantly while navigating.
-MSG_Confirm = -
-MSG_Back = -
-MSG_Cancel = -
-MSG_Close = -
-MSG_Skip = -
-MSG_Yes = -
-MSG_No = -
-MSG_Save = -
-MSG_ReturnToDefaultSetting = -
-MSG_OK = -
-MSG_NextPage = -
-MSG_PrevPage = -
+# DO NOT suppress the MSG_* button labels. They were silenced here on the
+# assumption that they were only the footer legend, but they are also the
+# highlighted button inside confirmation dialogs. With them muted, a Yes/No
+# prompt gives no way to tell what is currently selected. Repetition is a far
+# smaller problem than a dialog you cannot read. The same goes for MSG_OK,
+# MSG_NextPage and MSG_PrevPage, which were suppressed here for the same wrong
+# reason.
 
 # Placeholder-only strings: these carry a value the text system never fills in
 # ("<string />%"), so they reduce to punctuation and say nothing useful aloud.
@@ -75,12 +83,14 @@ collect_infocard_068 = -
 # ============================ Character Select ============================
 # One selection change resolves a burst: jutsu names, then the character, then the
 # battle controls legend. The character is what matters, so it is pulled to the
-# front; the legend is identical for every character and is dropped entirely.
-#
-# Order matters here - battle_preset_* must precede the broader battle_* rule.
+# front.
 c_cha_* = ^
-battle_preset_* = +
-battle_* = -
+
+# battle_* is NOT suppressed. These were silenced as a "control legend", but the
+# command list proves they are the character's support abilities: Strike Back,
+# Dash Cut, Charge Guard, Cover Fire, Secret Technique Substitution. That is real
+# information about the selected character, so it is spoken. Burst de-duplication
+# stops each one repeating, and the character's name is still announced first.
 
 # ============================ Game Mode Select ============================
 # Flash symbols in modesel_txt.gfx: story, ult_adv, adv2, freebtl, network, collect

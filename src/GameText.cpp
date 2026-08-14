@@ -29,14 +29,24 @@ void GameText::Initialize(__int64 moduleBase)
     _moduleBase = moduleBase;
 }
 
-std::string GameText::Resolve(const std::string& messageId)
+std::string GameText::ResolveAt(__int64 offset, const std::string& messageId)
 {
     if (_moduleBase == 0 || messageId.empty()) return std::string();
 
-    // The framework detours this function, so a bad ID can surface as a fault
-    // rather than a clean failure.
-    char* result = SafeResolve(_moduleBase + OffsetMessageToString, messageId.c_str());
+    // These are detoured, so a bad ID can surface as a fault rather than a clean
+    // failure.
+    char* result = SafeResolve(_moduleBase + offset, messageId.c_str());
 
     if (!result) return std::string();
     return std::string(result);
+}
+
+std::string GameText::Resolve(const std::string& messageId)
+{
+    return ResolveAt(OffsetMessageToString, messageId);
+}
+
+std::string GameText::ResolveAlt(const std::string& messageId)
+{
+    return ResolveAt(OffsetMessageToString3, messageId);
 }
