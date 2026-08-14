@@ -155,19 +155,19 @@ The framework also exposes a console with `kagura`, `ksay`, `kmsg` and `klog` co
 
 ## A note on how this was built, and what to expect
 
-Kagura was written with AI assistance, by a blind developer directing the work and testing every step in the actual
-game. Everything described here has been tried and does work — speech, the menu announcements, the hotkeys, the release
-build.
+I built Kagura with AI assistance, directing the work and testing every step in the actual game. I'm blind myself, so
+everything here was checked by ear as it was written. Everything described in this README does work — speech, the menu
+announcements, the hotkeys, the release build.
 
-That is not the same as being thoroughly tested. It has been exercised by one person, with one screen reader (NVDA), on
-one copy of the game at version 1.09. The other eleven Prism backends compile but have never been run. Large parts of
-the game have never been visited, and any menu nobody has walked through yet will read out its raw description text
-rather than a proper label. **Expect rough edges.**
+That is not the same as being thoroughly tested. I'm one person, using one screen reader (NVDA), on one copy of the game
+at version 1.09. The other eleven Prism backends compile but I have never run them. There are large parts of the game I
+haven't reached yet, and any menu I haven't walked through will read out its raw description text rather than a proper
+label. **Expect rough edges.**
 
-If something reads badly, reads twice, or stays silent when it should not, that is a bug worth reporting rather than
-something you have to live with. Most such problems are fixed by editing `names.txt`, which needs no rebuild.
+If something reads badly, reads twice, or stays silent when it shouldn't, that's a bug worth telling me about rather
+than something you have to live with. Most of it comes down to editing `names.txt`, which needs no rebuild.
 
-**Issues and pull requests are welcome.** Useful things to include in an issue:
+**Issues and pull requests are welcome.** Things that help me fix it quickly:
 
 - What screen was open and what you were doing
 - What you heard, and what you expected to hear
@@ -189,9 +189,9 @@ across great distances and through solid obstacles, entirely without looking at 
 depended on eyesight in the first place, which is exactly what this mod is: the game's state, reaching you by another
 route.
 
-**Byakugan** was the obvious candidate and was considered, but it is the wrong fit twice over. It is a *dojutsu* — an
-eye technique, defined by sight — and it sees *everything*: three-hundred-and-sixty degrees, through walls, down to the
-chakra network. That promises far more than this mod delivers. Kagura reads menus and text; it does not hand you
+I considered **Byakugan**, the obvious candidate, but it's the wrong fit twice over. It's a *dojutsu* — an eye
+technique, defined by sight — and it sees *everything*: three-hundred-and-sixty degrees, through walls, down to the
+chakra network. That promises far more than this mod delivers. Kagura reads menus and text; it doesn't hand you
 omniscient awareness of a battlefield.
 
 A sensory technique that works without eyes is the honest metaphor. An all-seeing eye would have been a bigger claim
