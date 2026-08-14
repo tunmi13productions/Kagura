@@ -38,6 +38,29 @@ jobs:
           "version=$v" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
           Write-Host "Version: $v"
 
+      # Prism targets C23, and the CMake preinstalled on the runner image does not
+      # know how to enable that dialect for MSVC ("Target prism requires the language
+      # dialect C23 ... but the current compiler MSVC does not support this").
+      # The runner's compiler is fine - it is the same MSVC 14.44 used locally - so
+      # a current CMake is pinned here instead. Downloaded directly from Kitware
+      # rather than through a third-party action.
+      - name: Install CMake
+        shell: pwsh
+        run: |
+          $version = '4.3.3'
+          $url = "https://github.com/Kitware/CMake/releases/download/v$version/cmake-$version-windows-x86_64.zip"
+          $zip = Join-Path $env:RUNNER_TEMP 'cmake.zip'
+          Write-Host "Downloading CMake $version"
+          Invoke-WebRequest -Uri $url -OutFile $zip -UseBasicParsing
+          Expand-Archive -Path $zip -DestinationPath $env:RUNNER_TEMP -Force
+          $bin = Join-Path $env:RUNNER_TEMP "cmake-$version-windows-x86_64\bin"
+          if (-not (Test-Path (Join-Path $bin 'cmake.exe'))) { throw "cmake.exe not found in $bin" }
+          $bin | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+
+      - name: Report toolchain
+        shell: pwsh
+        run: cmake --version
+
       # Prism is built from source rather than shipped as a committed binary, so
       # every release is reproducible from a pinned upstream revision. The hosted
       # windows runners include the C++ ATL component, which Prism's JAWS, SAPI,
