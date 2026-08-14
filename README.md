@@ -31,7 +31,7 @@ moddingapi\mods\Kagura\lib\prism.dll
 
 4. **Start the game.** A few seconds in you should hear **"Kagura ready"**.
 
-If you do not hear it, open `moddingapi\mods\Kagura\kagura.log` — it records which screen reader was detected and
+If you do not hear it, open `moddingapi\mods\Kagura\kagura.log`, which records which screen reader was detected and
 whether anything failed. That file is rewritten at every launch.
 
 ### Uninstalling
@@ -44,11 +44,11 @@ Delete `moddingapi\mods\Kagura`. Kagura does not modify any game files.
 
 Move through menus as normal and Kagura announces the highlighted item.
 
-- `F8` — mute / unmute announcements
-- `F9` — repeat the last announcement
+- `F8`, mute or unmute announcements
+- `F9`, repeat the last announcement
 
 `F9` works while muted, so you can silence Kagura during a fight and still check what you missed. Neither key is taken
-away from the game — Kagura only observes them.
+away from the game, and Kagura only observes them.
 
 ### Tuning what gets spoken
 
@@ -69,11 +69,11 @@ Anything with no rule is still spoken using the game's own text, so an unmapped 
 ## Why a names file exists
 
 The game resolves exactly one message per menu selection change, and that message is the highlighted item's
-*description* — never its name. The names themselves are pre-rendered `.dds` textures inside the Scaleform UI, so they
+*description*, never its name. The names themselves are pre-rendered `.dds` textures inside the Scaleform UI, so they
 never pass through the text system at all. `names.txt` supplies the missing labels.
 
-That is why an unmapped menu still reads as, say, *"Enjoy free battles."* rather than *"Free Battle"* — the description
-is genuinely all the game exposes.
+That is why an unmapped menu still reads as, say, *"Enjoy free battles."* rather than *"Free Battle"*, because the
+description is genuinely all the game exposes.
 
 ---
 
@@ -109,8 +109,8 @@ To add ATL to an existing install:
 .\build.ps1 -Package -Version v1.0.0
 ```
 
-`build.ps1` finds your toolchain through `vswhere`, so no paths are hardcoded. The game must be **closed** to install —
-Windows locks `Kagura.dll` while the game has it loaded.
+`build.ps1` finds your toolchain through `vswhere`, so no paths are hardcoded. The game must be **closed** to install,
+because Windows locks `Kagura.dll` while the game has it loaded.
 
 `scripts\build-prism.ps1` pins a specific upstream Prism revision so releases are reproducible; pass `-Ref` to build a
 different one.
@@ -134,17 +134,17 @@ GitHub release.
 ## Debugging
 
 Kagura writes everything to `kagura.log` in its mod folder, and reads commands from a `kagura.cmd` file dropped in the
-same place — one command per line, executed and deleted within about a quarter of a second.
+same place, one command per line, executed and deleted within about a quarter of a second.
 
-- `status` — report speech, hook and mapping state
-- `names` — reload `names.txt` without restarting the game
-- `log on` / `log off` — toggle logging of every resolved message
-- `say <text>` — speak a literal string
-- `msg <id>` — resolve a message ID and speak it
-- `dump <prefix> [max]` — walk a prefix's numeric ID range and log every message that resolves
-- `announce on` / `announce off` — same as `F8`
-- `verbose on` / `verbose off` — include the description after the label
-- `silence` — stop speech immediately
+- `status`, report speech, hook and mapping state
+- `names`, reload `names.txt` without restarting the game
+- `log on` / `log off`, toggle logging of every resolved message
+- `say <text>`, speak a literal string
+- `msg <id>`, resolve a message ID and speak it
+- `dump <prefix> [max]`, walk a prefix's numeric ID range and log every message that resolves
+- `announce on` / `announce off`, same as `F8`
+- `verbose on` / `verbose off`, include the description after the label
+- `silence`, stop speech immediately
 
 Logged messages are tagged `[msg]` when `names.txt` covers them and `[unmapped]` when it does not, which is how new
 menus get mapped. `dump` is how a menu can be mapped without visiting it.
@@ -155,9 +155,10 @@ The framework also exposes a console with `kagura`, `ksay`, `kmsg` and `klog` co
 
 ## A note on how this was built, and what to expect
 
-I built Kagura with AI assistance — specifically Anthropic's **Claude Opus 5**, run through **Claude Code** — directing
-the work and testing every step in the actual game. I'm blind myself, so everything here was checked by ear as it was
-written. Everything described in this README does work — speech, the menu announcements, the hotkeys, the release build.
+I built Kagura with AI assistance, specifically Anthropic's **Claude Opus 5** run through **Claude Code**, directing the
+work and testing every step in the actual game. I'm blind myself, so everything here was checked by ear as it was
+written. Everything described in this README does work, including speech, the menu announcements, the hotkeys, and the
+release build.
 
 That is not the same as being thoroughly tested. I'm one person, using one screen reader (NVDA), on one copy of the
 game. The other eleven Prism backends compile but I have never run them. There are large parts of the game I haven't
@@ -171,7 +172,7 @@ than something you have to live with. Most of it comes down to editing `names.tx
 
 - What screen was open and what you were doing
 - What you heard, and what you expected to hear
-- Your `kagura.log` if you can — it names every message the game resolved, and lines tagged `[unmapped]` are usually the
+- Your `kagura.log` if you can, which names every message the game resolved. Lines tagged `[unmapped]` are usually the
 whole answer
 
 ## Compatibility
@@ -185,14 +186,13 @@ happens.
 
 ## About the name
 
-**Kagura** comes from the *Kagura Shingan* — the Mind's Eye of the Kagura — a sensory technique that perceives chakra
+**Kagura** comes from the *Kagura Shingan*, the Mind's Eye of the Kagura, a sensory technique that perceives chakra
 across great distances and through solid obstacles, entirely without looking at anything. It is perception that never
 depended on eyesight in the first place, which is exactly what this mod is: the game's state, reaching you by another
 route.
 
-I considered **Byakugan**, the obvious candidate, but it's the wrong fit twice over. It's a *dojutsu* — an eye
-technique, defined by sight — and it sees *everything*: three-hundred-and-sixty degrees, through walls, down to the
-chakra network. That promises far more than this mod delivers. Kagura reads menus and text; it doesn't hand you
+I considered **Byakugan**, the obvious candidate, but it's the wrong fit twice over. It's a *dojutsu*, an eye technique
+defined by sight, and it sees *everything*: three-hundred-and-sixty degrees, through walls, down to the chakra network. That promises far more than this mod delivers. Kagura reads menus and text; it doesn't hand you
 omniscient awareness of a battlefield.
 
 A sensory technique that works without eyes is the honest metaphor. An all-seeing eye would have been a bigger claim
@@ -200,7 +200,7 @@ than the software can make.
 
 ## Licence
 
-Kagura is released under the MIT Licence — see [LICENSE](LICENSE).
+Kagura is released under the MIT Licence, detailed in [LICENSE](LICENSE).
 
 Kagura ships `prism.dll`, which is licensed under the Mozilla Public Licence 2.0. See [NOTICE](NOTICE) for details and
 where to obtain its source.
