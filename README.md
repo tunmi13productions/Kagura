@@ -173,6 +173,21 @@ happens, `kagura.log` says so explicitly.
 
 ---
 
+## About the name
+
+**Kagura** comes from the *Kagura Shingan* — the Mind's Eye of the Kagura — a sensory technique that perceives chakra
+across great distances and through solid obstacles, entirely without looking at anything. It is perception that never
+depended on eyesight in the first place, which is exactly what this mod is: the game's state, reaching you by another
+route.
+
+**Byakugan** was the obvious candidate and was considered, but it is the wrong fit twice over. It is a *dojutsu* — an
+eye technique, defined by sight — and it sees *everything*: three-hundred-and-sixty degrees, through walls, down to the
+chakra network. That promises far more than this mod delivers. Kagura reads menus and text; it does not hand you
+omniscient awareness of a battlefield.
+
+A sensory technique that works without eyes is the honest metaphor. An all-seeing eye would have been a bigger claim
+than the software can make.
+
 ## Licence
 
 Kagura is released under the MIT Licence — see [LICENSE](LICENSE).
