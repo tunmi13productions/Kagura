@@ -44,10 +44,8 @@ Delete `moddingapi\mods\Kagura`. Kagura does not modify any game files.
 
 Move through menus as normal and Kagura announces the highlighted item.
 
-| Key | Action |
-| --- | --- |
-| `F8` | Mute / unmute announcements |
-| `F9` | Repeat the last announcement |
+- `F8` — mute / unmute announcements
+- `F9` — repeat the last announcement
 
 `F9` works while muted, so you can silence Kagura during a fight and still check what you missed. Neither key is taken
 away from the game — Kagura only observes them.
@@ -138,17 +136,15 @@ GitHub release.
 Kagura writes everything to `kagura.log` in its mod folder, and reads commands from a `kagura.cmd` file dropped in the
 same place — one command per line, executed and deleted within about a quarter of a second.
 
-| Command | Effect |
-| --- | --- |
-| `status` | Report speech, hook and mapping state |
-| `names` | Reload `names.txt` without restarting the game |
-| `log on` / `log off` | Toggle logging of every resolved message |
-| `say <text>` | Speak a literal string |
-| `msg <id>` | Resolve a message ID and speak it |
-| `dump <prefix> [max]` | Walk a prefix's numeric ID range and log every message that resolves |
-| `announce on` / `off` | Same as `F8` |
-| `verbose on` / `off` | Include the description after the label |
-| `silence` | Stop speech immediately |
+- `status` — report speech, hook and mapping state
+- `names` — reload `names.txt` without restarting the game
+- `log on` / `log off` — toggle logging of every resolved message
+- `say <text>` — speak a literal string
+- `msg <id>` — resolve a message ID and speak it
+- `dump <prefix> [max]` — walk a prefix's numeric ID range and log every message that resolves
+- `announce on` / `announce off` — same as `F8`
+- `verbose on` / `verbose off` — include the description after the label
+- `silence` — stop speech immediately
 
 Logged messages are tagged `[msg]` when `names.txt` covers them and `[unmapped]` when it does not, which is how new
 menus get mapped. `dump` is how a menu can be mapped without visiting it.
@@ -156,6 +152,27 @@ menus get mapped. `dump` is how a menu can be mapped without visiting it.
 The framework also exposes a console with `kagura`, `ksay`, `kmsg` and `klog` commands if you prefer typing.
 
 ---
+
+## A note on how this was built, and what to expect
+
+Kagura was written with AI assistance, by a blind developer directing the work and testing every step in the actual
+game. Everything described here has been tried and does work — speech, the menu announcements, the hotkeys, the release
+build.
+
+That is not the same as being thoroughly tested. It has been exercised by one person, with one screen reader (NVDA), on
+one copy of the game at version 1.09. The other eleven Prism backends compile but have never been run. Large parts of
+the game have never been visited, and any menu nobody has walked through yet will read out its raw description text
+rather than a proper label. **Expect rough edges.**
+
+If something reads badly, reads twice, or stays silent when it should not, that is a bug worth reporting rather than
+something you have to live with. Most such problems are fixed by editing `names.txt`, which needs no rebuild.
+
+**Issues and pull requests are welcome.** Useful things to include in an issue:
+
+- What screen was open and what you were doing
+- What you heard, and what you expected to hear
+- Your `kagura.log` if you can — it names every message the game resolved, and lines tagged `[unmapped]` are usually the
+whole answer
 
 ## Compatibility
 
