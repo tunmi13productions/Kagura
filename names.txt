@@ -1,0 +1,214 @@
+# Kagura - message ID to spoken name.
+#
+# The game resolves one message per menu selection change, and it is always the
+# highlighted item's DESCRIPTION. The item's own label is a pre-rendered .dds
+# texture inside the Scaleform .gfx, so it never passes through the text system.
+# This file supplies the missing labels.
+#
+# Format:  <messageId> = <spoken name>
+#   - An ID ending in * matches by prefix.
+#   - A value of - means "never speak this".
+#   - A value of ^ means "speak its own text, but FIRST in the burst".
+#   - A value of + means "speak its own text normally" (used to carve an
+#     exception out of a broader wildcard rule).
+#   - Exact IDs win over wildcards; earlier wildcards win over later ones.
+#   - Anything with no rule is still spoken, using the raw description.
+#
+# Reload in-game with the "names" command - no rebuild, no restart.
+#
+# Labels below were harvested with the "dump" command, which walks a prefix's
+# numeric range through the game's own resolver. Only IDs whose description does
+# NOT already state the label are mapped; self-describing text is left alone.
+
+# ============================ button icons ============================
+# The game writes buttons as markup: "Strike Attack: <icon btn_attack />".
+# Without these, the icon is dropped and the line says nothing useful.
+# An unlisted icon is spoken by its raw name, so gaps here are audible.
+@icon:btn_attack   = Attack
+@icon:btn_shuriken = Shuriken
+@icon:btn_jump     = Jump
+@icon:btn_chakra   = Chakra
+@icon:btn_guard    = Guard
+@icon:btn_kawarimi = Substitution
+@icon:btn_1        = Button 1
+@icon:btn_2        = Button 2
+@icon:key_dwn      = Down
+@icon:key_up       = Up
+@icon:key_lft      = Left
+@icon:key_rgt      = Right
+@icon:key          = key
+@icon:start        = Start
+@icon:save         = save
+
+# ============================ suppressed ============================
+
+# The on-screen control legend during battle and tutorials. It arrives as label /
+# icon pairs and re-resolves constantly, so it is chatter during a fight. The
+# deliberate "1P Command List" menu uses commandlist_* (no _demo) and is kept.
+commandlist_demo_* = -
+
+# Steam / Discord rich presence strings. Not UI text at all - they describe what
+# the player is doing to *other* people.
+presence_* = -
+
+# The button legend along the bottom of the screen. Re-resolved on every screen
+# change, so these fire constantly while navigating.
+MSG_Confirm = -
+MSG_Back = -
+MSG_Cancel = -
+MSG_Close = -
+MSG_Skip = -
+MSG_Yes = -
+MSG_No = -
+MSG_Save = -
+MSG_ReturnToDefaultSetting = -
+MSG_OK = -
+MSG_NextPage = -
+MSG_PrevPage = -
+
+# Placeholder-only strings: these carry a value the text system never fills in
+# ("<string />%"), so they reduce to punctuation and say nothing useful aloud.
+collection_004 = -
+collect_infocard_044 = -
+collect_infocard_068 = -
+
+# ============================ Character Select ============================
+# One selection change resolves a burst: jutsu names, then the character, then the
+# battle controls legend. The character is what matters, so it is pulled to the
+# front; the legend is identical for every character and is dropped entirely.
+#
+# Order matters here - battle_preset_* must precede the broader battle_* rule.
+c_cha_* = ^
+battle_preset_* = +
+battle_* = -
+
+# ============================ Game Mode Select ============================
+# Flash symbols in modesel_txt.gfx: story, ult_adv, adv2, freebtl, network, collect
+gamemodeselect_004    = Return to Game Mode Select
+gamemodeselect_005    = Game Mode Select
+gamemodeselect_010    = Free Battle
+gamemodeselect_011    = Free Battle
+gamemodeselect_012    = Online
+gamemodeselect_012_pc = Online
+gamemodeselect_018    = Story
+gamemodeselect_019    = Adventure
+gamemodeselect_020    = Collection
+gamemodeselect_022    = Adventure
+gamemodeselect_026    = Road to Boruto, Story
+gamemodeselect_027    = Road to Boruto, Adventure
+
+# ============================ Free Battle ============================
+freebattle_001     = VS Battle
+freebattle_009     = 1P VS COM
+freebattle_010     = 1P VS 2P
+freebattle_011     = COM VS COM
+freebattle_012     = League
+freebattle_013     = Character Customization
+freebattle_014     = Preset
+freebattle_015     = Settings
+freebattle_016     = Team Match
+freebattle_017     = Single Match
+freebattle_018     = Time Limit
+freebattle_019     = Difficulty
+freebattle_020     = Handicap
+tournament_001     = Tournament
+practice_mode_help = Practice
+
+# ============================ Collection ============================
+collection_002                    = Collection
+collection_013                    = Titles
+collection_014                    = Substitution Items
+collection_024                    = Ninja Info Card Pictures
+collection_025                    = Titles
+collection_026                    = Substitution Item
+collect_log_002                   = Substitution Item
+collect_log_003                   = Substitution Jutsu
+collect_log_004                   = Substitution Items
+collect_log_007                   = Change Substitution Item
+collect_log_009                   = Substitution List
+collect_infocard_001              = Ninja Info Card Picture
+collect_infocard_006              = Select Picture
+collect_infocard_009              = Edit Card Picture
+collect_infocard_010              = Edit Title
+collect_infocard_011              = Edit Ninja Info Card
+collect_infocard_015              = Set Title
+collect_infocard_017              = Set Picture
+collect_infocard_019              = Ninja Info Card
+collect_infocard_022              = Exchanged Ninja Info Cards
+collect_infocard_024              = View Ninja Info Cards
+collect_infocard_025              = Exchanged Ninja Info Cards
+collect_infocard_028              = Collected Card Pictures
+collect_infocard_032              = Edit Ninja Info Card
+collect_infocardskin_001          = Ninja Info Card Skin
+FinalSpSkillCutIn_002             = Finish Cut-In Image
+collectTop_MatchingVoice_HelpMess = Matching Voice
+tutorial_110                      = About Collection
+
+# ============================ Item List ============================
+item_list_002 = Item List
+item_list_005 = Edit Ninja Tools
+item_list_014 = Item
+item_list_016 = Valuable
+
+# ============================ Options ============================
+option_008    = Difficulty Settings
+option_016    = Control Settings
+option_060    = Screen Position
+option_068    = Subtitle Display
+option_072    = Screen Settings
+option_102    = Settings Complete
+option_125    = Voice Settings
+option_162    = Music Volume
+option_166    = Sound Effects Volume
+option_167    = Voice Volume
+option_168    = Movie Volume
+option_169    = Options
+option_172    = Violent Imagery
+option_173    = Subtitle Display
+option_176    = Controller Speaker Volume
+option_195    = Change Settings
+PC_option_001 = Keyboard Settings
+PC_game_000   = Quit Game
+
+# ============================ Adventure ============================
+advStartMenu_015 = Tutorial
+advMainMenu_006  = Display Recap
+advMainMenu_014  = Ninja Tasks
+advMainMenu_043  = Boruto's Tale
+
+# ============================ Online / Network ============================
+# Character, title, rank and item names (c_cha_*, sub_cha_*, title_name*, rankname_*,
+# c_bat_*) resolve to the label itself, so character select needs no mapping at all.
+networkmode_020    = Leaderboards
+networkmode_021    = Leaderboards
+networkmode_199    = Player Match
+networkmode_207    = Endless
+networkmode_209    = Tournament
+networkmode_665    = Friend Search
+network_sys_036    = Ninja Card Shop
+network_sys_159    = Online Battle
+network_sys_161    = League
+network_sys_205    = Bingo Book
+networkLimitEvent_036 = Limited Time Only Event
+PC_network_sys_002 = Store
+
+# ============================ Modes ============================
+survival_001    = Survival
+networkmode_648 = Round
+
+# ============================ In-battle pause menu ============================
+# 046 already says "Return to Free Battle Menu"; 047 is the same sentence with a
+# full stop, which the burst de-duplicator cannot collapse.
+battlestartmenu_047 = -
+battlestartmenu_036 = Return to Character Select
+battlestartmenu_084 = Change Command Pop-Up Display
+battlestartmenu_001 = Retry
+battlestartmenu_003 = Change Jutsu Name Display
+battlestartmenu_012 = 1P Command List
+battlestartmenu_014 = 1P Combo List
+battlestartmenu_016 = 2P Command List
+battlestartmenu_018 = 2P Combo List
+battlestartmenu_019 = Check Battle Conditions
+battlestartmenu_021 = Return to Free Movement
+battlestartmenu_022 = Practice Settings
+battlestartmenu_053 = Practice Settings

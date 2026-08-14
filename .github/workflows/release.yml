@@ -1,0 +1,72 @@
+name: Release
+
+# Tag a commit and push the tag to publish a build:
+#   git tag v1.3 && git push origin v1.3
+# Produces kagura_v1.3.zip on the GitHub Releases page so players never build anything.
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version label for the zip (e.g. v1.3)"
+        required: false
+        default: "dev"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    steps:
+      - name: Check out Kagura
+        uses: actions/checkout@v4
+
+      - name: Work out the version label
+        id: version
+        shell: pwsh
+        run: |
+          if ($env:GITHUB_REF -like 'refs/tags/*') {
+            $v = $env:GITHUB_REF -replace '^refs/tags/', ''
+          } else {
+            $v = '${{ github.event.inputs.version }}'
+            if (-not $v) { $v = 'dev' }
+          }
+          "version=$v" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          Write-Host "Version: $v"
+
+      # Prism is built from source rather than shipped as a committed binary, so
+      # every release is reproducible from a pinned upstream revision. The hosted
+      # windows runners include the C++ ATL component, which Prism's JAWS, SAPI,
+      # ZoomText, Window-Eyes and Sense Reader backends require.
+      - name: Cache Prism build
+        id: prism-cache
+        uses: actions/cache@v4
+        with:
+          path: lib/prism.dll
+          key: prism-${{ hashFiles('scripts/build-prism.ps1') }}-${{ runner.os }}
+
+      - name: Build Prism
+        if: steps.prism-cache.outputs.cache-hit != 'true'
+        shell: pwsh
+        run: .\scripts\build-prism.ps1
+
+      - name: Build and package Kagura
+        shell: pwsh
+        run: .\build.ps1 -Package -Version "${{ steps.version.outputs.version }}"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kagura_${{ steps.version.outputs.version }}
+          path: dist/*.zip
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip
+          generate_release_notes: true

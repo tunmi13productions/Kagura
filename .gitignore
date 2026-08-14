@@ -1,0 +1,20 @@
+# Build output
+build/
+dist/
+
+# MSVC intermediates, in case anything lands outside build/
+*.obj
+*.exp
+*.lib
+*.pdb
+*.ilk
+
+# Prism is built by scripts\build-prism.ps1 and by CI, not committed.
+# It is a 1.1 MB binary of a separate MPL-2.0 project; see NOTICE.
+lib/prism.dll
+
+# Runtime files produced next to an installed copy
+kagura.log
+kagura.cmd
+
+.vs/

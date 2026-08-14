@@ -1,0 +1,45 @@
+Kagura
+Copyright (c) 2026 tunmi13productions
+
+This product includes third-party software.
+
+--------------------------------------------------------------------------------
+Prism (PRISM - Platform-agnostic Reader Interface for Speech and Messages)
+--------------------------------------------------------------------------------
+
+Kagura distributes an unmodified compiled binary of Prism as lib/prism.dll.
+
+  Upstream:  https://github.com/ethindp/prism
+  Author:    Ethin Probst
+  Licence:   Mozilla Public Licence, version 2.0 (MPL-2.0)
+  Revision:  83742ee415fc895567493c19c1a639ad3c092760
+
+The full text of the Mozilla Public Licence 2.0 is available at:
+
+  https://mozilla.org/MPL/2.0/
+
+Under section 3.2 of the MPL, the source code for Prism is available from the
+upstream repository above at the exact revision listed. Kagura makes no
+modifications to Prism; it links to nothing at build time and loads prism.dll
+dynamically at runtime.
+
+To rebuild that exact binary yourself, run scripts/build-prism.ps1, which checks
+out the pinned revision above.
+
+--------------------------------------------------------------------------------
+Storm Framework / NS4 Modding API
+--------------------------------------------------------------------------------
+
+Kagura is a plugin for the Storm Framework and requires it at runtime, but does
+not distribute or include any part of it. It must be installed separately.
+
+  Upstream:  https://github.com/Sim-Sim2000/ns4moddingapi
+
+--------------------------------------------------------------------------------
+Trademarks
+--------------------------------------------------------------------------------
+
+NARUTO SHIPPUDEN: Ultimate Ninja STORM 4 is a trademark of its respective owners.
+Kagura is an unofficial, fan-made accessibility modification and is not affiliated
+with, endorsed by, or sponsored by BANDAI NAMCO Entertainment or CyberConnect2.
+It contains no game assets and modifies no game files.
