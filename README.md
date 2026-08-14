@@ -13,26 +13,21 @@ System Access, ZDSR, PC-Talker, Sense Reader, BoyPCReader and Window-Eyes.
 
 ## Installing (no building required)
 
-1. **Install the Storm Framework** into your STORM 4 folder, if you have not already.
-   That is the folder containing `NSUNS4.exe` — typically
-   `...\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4`.
-   You should end up with a `moddingapi` folder and an `xinput9_1_0.dll` beside the game executable.
+1. **Install the Storm Framework** into your STORM 4 folder, if you have not already. That is the folder containing
+`NSUNS4.exe`, typically `...\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4`. You should end up with a
+`moddingapi` folder and an `xinput9_1_0.dll` beside the game executable.
 
 2. **Download the latest `kagura_*.zip`** from the [Releases page](../../releases).
 
-3. **Copy the `Kagura` folder from the zip** into `moddingapi\mods\`, so you have:
+3. **Copy the `Kagura` folder from the zip** into `moddingapi\mods\`. Relative to the folder holding `NSUNS4.exe`, you
+should end up with these four files:
 
-   ```
-   NARUTO SHIPPUDEN Ultimate Ninja STORM 4\
-     moddingapi\
-       mods\
-         Kagura\
-           Kagura.dll
-           info.txt
-           names.txt
-           lib\
-             prism.dll
-   ```
+```
+moddingapi\mods\Kagura\Kagura.dll
+moddingapi\mods\Kagura\info.txt
+moddingapi\mods\Kagura\names.txt
+moddingapi\mods\Kagura\lib\prism.dll
+```
 
 4. **Start the game.** A few seconds in you should hear **"Kagura ready"**.
 
@@ -89,18 +84,15 @@ is genuinely all the game exposes.
 **Requirements**
 
 - Windows 10 or later, x64
-- Visual Studio 2022 Build Tools (or any 2022 edition) with:
-  - **Desktop development with C++** (or at minimum the MSVC x64 toolset)
-  - **C++ ATL** (`Microsoft.VisualStudio.Component.VC.ATL`) — required by Prism's JAWS, SAPI, ZoomText, Window-Eyes and
-    Sense Reader backends. Without it those five fail to compile.
+- Visual Studio 2022 Build Tools, or any 2022 edition
+- The **Desktop development with C++** workload, or at minimum the MSVC x64 toolset
+- The **C++ ATL** component (`Microsoft.VisualStudio.Component.VC.ATL`), required by Prism's JAWS, SAPI, ZoomText, Window-Eyes and Sense Reader backends. Without it those five fail to compile.
 - CMake 3.25+ and Git on `PATH`
 
 To add ATL to an existing install:
 
 ```
-"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" modify ^
-  --installPath "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools" ^
-  --add Microsoft.VisualStudio.Component.VC.ATL --passive --norestart
+"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" modify --installPath "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools" --add Microsoft.VisualStudio.Component.VC.ATL --passive --norestart
 ```
 
 **Build**
