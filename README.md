@@ -5,7 +5,8 @@ Screen reader accessibility for **NARUTO SHIPPUDEN: Ultimate Ninja STORM 4** on 
 Kagura speaks the game's menus, character select, command lists, battle missions and story dialogue through your screen
 reader, so the game can be navigated and played without sight.
 
-It is a plugin for the [Storm Framework / NS4 Modding API](https://github.com/Sim-Sim2000/ns4moddingapi), and speaks
+It is a plugin for the [Storm Framework / NS4 Modding API](https://github.com/zealottormunds/ns4moddingapi) by Zealot
+Tormunds, and speaks
 through [Prism](https://github.com/ethindp/prism), which supports NVDA, JAWS, SAPI, Windows OneCore, UIA, ZoomText,
 System Access, ZDSR, PC-Talker, Sense Reader, BoyPCReader and Window-Eyes.
 
@@ -13,9 +14,10 @@ System Access, ZDSR, PC-Talker, Sense Reader, BoyPCReader and Window-Eyes.
 
 ## Installing (no building required)
 
-1. **Install the Storm Framework** into your STORM 4 folder, if you have not already. That is the folder containing
+1. **Install the Storm Framework** into your STORM 4 folder, if you have not already. Get it from
+[its releases page](https://github.com/zealottormunds/ns4moddingapi/releases). Install it into the folder containing
 `NSUNS4.exe`, typically `...\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4`. You should end up with a
-`moddingapi` folder and an `xinput9_1_0.dll` beside the game executable.
+`moddingapi` folder and an `xinput9_1_0.dll` beside the game executable. Kagura is built against Storm Framework 2.0.
 
 2. **Download the latest `kagura_*.zip`** from the [Releases page](../../releases).
 

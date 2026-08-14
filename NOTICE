@@ -33,7 +33,8 @@ Storm Framework / NS4 Modding API
 Kagura is a plugin for the Storm Framework and requires it at runtime, but does
 not distribute or include any part of it. It must be installed separately.
 
-  Upstream:  https://github.com/Sim-Sim2000/ns4moddingapi
+  Upstream:  https://github.com/zealottormunds/ns4moddingapi
+  Author:    Zealot Tormunds
 
 --------------------------------------------------------------------------------
 Trademarks
